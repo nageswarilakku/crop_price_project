@@ -42,23 +42,7 @@ print(f"Mean Squared Error: {mse:.2f}")
 
 # Step 9: Save the trained model
 joblib.dump(model_pipeline, "crop_price_model.pkl")
-print("✅ Model saved as 'crop_price_model.pkl'")
+print(" Model saved as 'crop_price_model.pkl'")
 
 # Step 10: Load and use the model (example)
 loaded_model = joblib.load("crop_price_model.pkl")
-
-# Example prediction (optional test data)
-sample_data = pd.DataFrame([{
-    "STATE": "Karnataka",
-    "SOIL_TYPE": "Loamy soil",
-    "CROP": "Rice",
-    "N_SOIL": 80,
-    "P_SOIL": 40,
-    "K_SOIL": 45,
-    "TEMPERATURE": 25.0,
-    "HUMIDITY": 75.0,
-    "ph": 6.5,
-    "RAINFALL": 300.0
-}])
-predicted_price = loaded_model.predict(sample_data)[0]
-print(f"Predicted Price: ₹{round(predicted_price, 2)}")
