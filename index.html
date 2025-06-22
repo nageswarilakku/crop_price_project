@@ -51,8 +51,10 @@
 
         <!-- SOIL TYPE Dropdown -->
         <label>Soil Type:</label>
-        <select name="SOIL_TYPE" required>
-            <option value="">--Select Soil Type--</option>
+       
+        <select name="SOIL_TYPE" id="soilType" onchange="autoFillValues()" required>
+
+          <option value="">--Select Soil Type--</option>
             <option value="Alluvial soil">Alluvial soil</option>
             <option value="Black soil">Black soil</option>
             <option value="Red soil">Red soil</option>
@@ -85,30 +87,58 @@
             <option value="Bitter Gourd">Bitter Gourd</option>
         </select>
 
-        <!-- Numerical inputs -->
         <label>N in Soil:</label>
-        <input type="number" name="N_SOIL" required>
+<input type="number" name="N_SOIL" id="N" step="0.1">
 
-        <label>P in Soil:</label>
-        <input type="number" name="P_SOIL" required>
+<label>P in Soil:</label>
+<input type="number" name="P_SOIL"id="P" step="0.1">
 
-        <label>K in Soil:</label>
-        <input type="number" name="K_SOIL" required>
+<label>K in Soil:</label>
+<input type="number" name="K_SOIL"id="K" step="0.1">
 
-        <label>Temperature (°C):</label>
-        <input type="number" name="TEMPERATURE" step="0.1" required>
+<label>Temperature (°C):</label>
+<input type="number" name="TEMPERATURE" id="TEMP"step="0.1">
 
-        <label>Humidity (%):</label>
-        <input type="number" name="HUMIDITY" step="0.1" required>
+<label>Humidity (%):</label>
+<input type="number" name="HUMIDITY" id="HUMIDITY"step="0.1">
 
-        <label>pH:</label>
-        <input type="number" name="ph" step="0.1" required>
+<label>pH:</label>
+<input type="number" name="PH" id="PH"step="0.1">
 
-        <label>Rainfall (mm):</label>
-        <input type="number" name="RAINFALL" step="0.1" required>
+<label>Rainfall (mm):</label>
+<input type="number" name="RAINFALL" id="RAINFALL"step="0.1">
 
-        <button type="submit">Predict</button>
+   <button type="submit">Predict</button>
     </form>
 </div>
+<script>
+    const soilData = {
+        "Alluvial soil":  {N: 75, P: 40, K: 40, TEMP: 26, HUMIDITY: 80, RAINFALL: 220, PH: 6.5},
+        "Black soil":     {N: 80, P: 45, K: 50, TEMP: 28, HUMIDITY: 75, RAINFALL: 200, PH: 6.8},
+        "Red soil":       {N: 70, P: 35, K: 30, TEMP: 27, HUMIDITY: 78, RAINFALL: 180, PH: 6.0},
+        "Laterite soil":  {N: 60, P: 30, K: 35, TEMP: 29, HUMIDITY: 72, RAINFALL: 160, PH: 5.8},
+        "Arid soil":      {N: 40, P: 20, K: 15, TEMP: 35, HUMIDITY: 50, RAINFALL: 90,  PH: 7.2},
+        "Forest soil":    {N: 85, P: 50, K: 55, TEMP: 22, HUMIDITY: 85, RAINFALL: 250, PH: 6.7},
+        "Peaty soil":     {N: 90, P: 55, K: 60, TEMP: 24, HUMIDITY: 88, RAINFALL: 280, PH: 5.5},
+        "Loamy soil":     {N: 78, P: 42, K: 46, TEMP: 25, HUMIDITY: 76, RAINFALL: 210, PH: 6.4},
+        "Sandy soil":     {N: 55, P: 28, K: 30, TEMP: 32, HUMIDITY: 60, RAINFALL: 150, PH: 7.0},
+        "Clay soil":      {N: 65, P: 38, K: 42, TEMP: 23, HUMIDITY: 82, RAINFALL: 230, PH: 6.9}
+    };
+
+    function autoFillValues() {
+        const soil = document.getElementById("soilType").value;
+        const defaults = soilData[soil];
+        if (defaults) {
+            document.getElementById("N").value = defaults.N;
+            document.getElementById("P").value = defaults.P;
+            document.getElementById("K").value = defaults.K;
+            document.getElementById("TEMP").value = defaults.TEMP;
+            document.getElementById("HUMIDITY").value = defaults.HUMIDITY;
+            document.getElementById("RAINFALL").value = defaults.RAINFALL;
+            document.getElementById("PH").value = defaults.PH;
+        }
+    }
+</script>
+
 </body>
 </html>
